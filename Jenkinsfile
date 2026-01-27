@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/abduls1903/az-microservice-devops.git'
-            }
-        }
-
         stage('Build App') {
             agent {
                 docker {
