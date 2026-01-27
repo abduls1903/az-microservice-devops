@@ -1,0 +1,6 @@
+Issue: Deployment failed due to missing Docker image tag.
+Impact: Service could not be started as image pull failed.
+Root Cause: incorrect image tag was referenced after deleting a Docker Hub image.
+Detection: docker pull returned image not found error.
+Resoulution: Rolled back to last stable image version (v1).
+Prevention: Enforce immutable tags and restrict manual deletion of production image versions.
