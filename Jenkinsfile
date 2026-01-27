@@ -9,11 +9,15 @@ pipeline {
     }
 
     stage('Build App') {
-      steps {
-        sh 'ls -la'
-        sh 'mvn clean package'
-      }
+    steps {
+        sh '''
+          node -v
+          npm -v
+          npm install
+        '''
     }
+}
+
 
     stage('Docker Build') {
       steps {
