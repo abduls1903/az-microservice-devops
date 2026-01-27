@@ -1,12 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18-alpine'
-            args '-u root'
-        }
-    }
+    agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -14,6 +10,12 @@ pipeline {
         }
 
         stage('Build App') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    args '-u root'
+                }
+            }
             steps {
                 sh '''
                   node -v
@@ -26,6 +28,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 sh '''
+                  docker version
                   docker build -f Dockerfile.jenkins -t node-app:latest .
                 '''
             }
