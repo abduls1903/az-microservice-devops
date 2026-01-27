@@ -1,24 +1,26 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Build App') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    args '-u root'
-                }
-            }
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                sh 'docker build -t prod-microservice:ci .'
-            }
-        }
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
     }
+
+    stage('Build App') {
+      steps {
+        sh 'ls -la'
+        sh 'mvn clean package'
+      }
+    }
+
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t myapp:latest .'
+      }
+    }
+  }
 }
+
 
