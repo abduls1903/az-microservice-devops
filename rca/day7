@@ -1,0 +1,6 @@
+Issue: Application outage after Helm upgrade.
+Impact: Service became unavailable due to failed pod startups.
+Root Cause: Invalid Docker image tag and incorrect service port introduced during Helm values update.
+Detection: Helm status showed failed releases and pods entered ImagePullBackOff.
+Resolution: Rolled back Helm release to last stable revision.
+Prevention: validate image tags before Helm upgrades and use pre-deployment checks or canary releases.

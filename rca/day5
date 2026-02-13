@@ -1,0 +1,4 @@
+Root Cause: DockerHub access token used in Jenkins lacked required write scope.
+Impact: Image push failed despite successful authentication.
+Fix: Regenerated DockerHub token with Read/Write/Delete permissions and updated Jenkins credentials.
+Prevention: Always verify token scopes before CI integration.

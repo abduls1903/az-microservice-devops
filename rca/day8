@@ -1,0 +1,15 @@
+Inicdent-1: CrashLoopBackOff
+Isssue: Pods entered CrashLoopBackOff after Helm upgrade
+Impact: Application unavailable
+Detection: kubectl get pods showed repeated restarts
+Root Cause: Container port mismatch (5000 configured, app runs on 3000)
+Resolution: Corrected port in values.yaml and upgraded release
+Prevention: Validate container port before deployment, add readiness probe
+
+Incident-2: ImagePullBackOff
+Issue: Pods failed to start with ImagePullBackOff
+Impact: Service downtime
+Detection: kubectl describe pod showed manifest unknown
+Root Cause: Invalid Docker image tag build-tag instead of v1 in values.yaml
+Resolution: Corrected tag and redeployed
+Prevention: Implement image tag validation in CI pipeline

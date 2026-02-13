@@ -1,0 +1,11 @@
+Issue: Jenkins pipeline failed during SCM checkout and build stages
+Root Cause:
+1. Multiple SCM checkouts caused workspace mismatch
+2. Incorrect build tools (Maven used for Node app)
+3. Missing runtime dependencies on Jenkins host
+Fix:
+1. Disabled default checkout and controlled SCM manually
+2. Used Docker agent for Node.js build
+Ran Docker build on Jenkins host
+Prevention:
+Always control checkout explicity in Declarative pipelines ans isolate build environments using Docker agents

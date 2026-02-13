@@ -1,0 +1,8 @@
+Root Cause:
+Kubernetes deployment referenced the Docker image tag 'latest', but jenkins CI pipeline only pushed images with build-number tags. The 'latest' tag didnot exist in Docker Hub.
+Impact:
+Kubernetes failed to pull the container image, causing pods to remain in 'ImagePullBackOff' state and the application to be inaccessible.
+Fix:
+Aligned image tagging between Jenkins and Kubernetes by either pushing the 'latest' tag from CI or updating the deployment to use the exact build-number image tag.
+Prevention:
+Ensure consistent image tagging strategy across CI/CD pipelines and verify image availability in the container registery before deploying to Kubernetes.

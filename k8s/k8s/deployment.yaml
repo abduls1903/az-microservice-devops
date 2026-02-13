@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-microservice
+  labels:
+    app: prod-microservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: prod-microservice
+  template:
+    metadata:
+      labels:
+        app: prod-microservice
+    spec:
+      containers:
+      - name: node-app
+        image: abduls1903/prod-microservice:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
